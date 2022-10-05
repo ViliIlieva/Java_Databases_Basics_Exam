@@ -14,6 +14,14 @@ SET
         WHEN a.country LIKE 'P%' THEN 'In Progress'
         ELSE a.country
     END);
+    
+or    
+   
+UPDATE addresses  
+SET country =  if(country like 'B%', 'Blocked',
+			   if(country like 'T%', 'Test',
+               if(country like 'P%', 'In Progress',
+               countries)));
 ---------------------------------------------------------------------------------------------------
     
   
