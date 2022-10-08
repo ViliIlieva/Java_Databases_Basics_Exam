@@ -17,3 +17,17 @@ JOIN genres as g on g.id = gm.genre_id
     END
 ***
 SELECT udf_actor_history_movies_count('Stephan Lundberg')  AS 'history_movies';
+------------------------------------------------------------------------------------
+
+-- 11. Movie awards
+delimiter ***
+CREATE PROCEDURE udp_award_movie (movie_title VARCHAR(50))
+BEGIN 
+	UPDATE actors as a
+    JOIN movies_actors as ma on a.id = ma.actor_id
+    JOIN movies as m ON m.id = ma.movie_id
+		SET a.awards = a.awards + 1
+        WHERE m.title = movie_title;
+END
+***
+CALL udp_award_movie('Tea For Two');
