@@ -62,4 +62,4 @@ CONSTRAINT fk_genres_movies
 FOREIGN KEY (genre_id) REFERENCES genres(id),
 CONSTRAINT fk_movies_genres
 FOREIGN KEY (movie_id) REFERENCES movies(id)
-);
+ );
