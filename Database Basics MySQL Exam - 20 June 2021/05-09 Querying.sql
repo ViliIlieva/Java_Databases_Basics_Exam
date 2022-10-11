@@ -28,3 +28,14 @@ GROUP BY cr.client_id
 HAVING c.full_name LIKE '_a%' and count_of_cars > 1
 ORDER BY c.full_name;
 
+-- 09. Full info for courses
+SELECT a.name, 
+	CASE WHEN hour(cr.start) BETWEEN 6 and 20  THEN 'Day'
+		 ELSE 'Night' END	
+as 'day_time', cr.bill, c.full_name, cars.make, cars.model, ca.name
+FROM addresses as a
+JOIN courses as cr on a.id = cr.from_address_id
+JOIN clients as c on cr.client_id = c.id
+JOIN cars on cr.car_id = cars.id
+JOIN categories as ca on cars.category_id = ca.id
+ORDER BY cr.id;
